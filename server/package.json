@@ -1,12 +1,10 @@
 {
   "name": "server",
-  "description": "server for react blog",
+  "description": "featherjs server for react blog",
   "version": "0.0.0",
   "homepage": "",
   "main": "src",
-  "keywords": [
-    "feathers"
-  ],
+  "keywords": ["feathers"],
   "author": {
     "name": "Brian Fajardo",
     "email": "bmf5@hotmail.com"
@@ -24,17 +22,17 @@
   "scripts": {
     "test": "npm run eslint && npm run mocha",
     "eslint": "eslint src/. test/. --config .eslintrc.json",
-    "start": "node src/",
+    "start": "nodemon src/",
     "mocha": "mocha test/ --recursive"
   },
   "dependencies": {
-    "body-parser": "^1.18.1",
+    "body-parser": "^1.18.2",
     "compression": "^1.7.0",
     "cors": "^2.8.4",
     "feathers": "^2.2.0",
     "feathers-configuration": "^0.4.1",
     "feathers-errors": "^2.9.2",
-    "feathers-hooks": "^2.0.2",
+    "feathers-hooks": "^2.0.3",
     "feathers-hooks-common": "^3.7.3",
     "feathers-rest": "^1.8.0",
     "feathers-socketio": "^2.0.0",
@@ -44,7 +42,7 @@
   },
   "devDependencies": {
     "eslint": "^4.7.2",
-    "mocha": "^3.4.2",
+    "mocha": "^3.5.3",
     "request": "^2.82.0",
     "request-promise": "^4.2.1"
   }

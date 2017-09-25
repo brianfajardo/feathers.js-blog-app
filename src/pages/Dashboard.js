@@ -19,7 +19,8 @@ class Dashboard extends Component {
   }
 
   onPostClick(id) {
-    this.props.viewPostById(id, this.props.history)
+    this.props.viewPostById(id)
+    this.props.history.push('/view_post')
   }
 
   render() {

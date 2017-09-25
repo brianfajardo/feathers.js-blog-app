@@ -6,7 +6,6 @@ export const fetchPosts = () => dispatch => {
   return dispatch({ type: FETCH_POSTS, payload: fakePosts })
 }
 
-export const viewPostById = (id, history) => {
-  history.push('/view_post')
+export const viewPostById = id => {
   return { type: VIEW_SINGLE_POST, payload: id }
 }

@@ -1,6 +1,6 @@
 # server
 
-> server for react blog
+> featherjs server for react blog
 
 ## About
 
