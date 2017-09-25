@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
-import { Header, Form, Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import { Form, Button } from 'semantic-ui-react'
+import PageHeader from '../components/PageHeader'
 import RegistrationModal from '../components/RegistrationModal'
 
 class Login extends Component {
@@ -9,8 +11,8 @@ class Login extends Component {
 
     this.state = { showModal: false }
 
-    this.onToggleModal = this.onToggleModal.bind(this)
     this.onFormSubmit = this.onFormSubmit.bind(this)
+    this.onToggleModal = this.onToggleModal.bind(this)
   }
 
   onToggleModal() {
@@ -28,17 +30,16 @@ class Login extends Component {
       <div>
         <RegistrationModal
           showModal={showModal}
-          onToggleModal={this.onToggleModal}
           onFormSubmit={this.onFormSubmit}
+          onToggleModal={this.onToggleModal}
         />
         <div className="login-page">
-          <Header as="h4" className="header">
-            FeatherJS Blog
-          </Header>
-          <Header as="h3" className="header">
-            Welcome! Login to your account or register a new one with us to
-            start blogging.
-          </Header>
+          <div className="pageHeader">
+            <PageHeader
+              title="FeatherJS Blog"
+              content="Welcome! Login to your account or register a new one with us to start blogging."
+            />
+          </div>
           <div>
             <Form>
               <Form.Field>
@@ -49,12 +50,14 @@ class Login extends Component {
                 <label>Password</label>
                 <input type="password" name="password" placeholder="Password" />
               </Form.Field>
-              <Button type="submit">Login</Button>
+              <Link to="/dashboard">
+                <Button>Login</Button>
+              </Link>
             </Form>
           </div>
           <Button
-            className="ui button"
             type="button"
+            className="ui button"
             onClick={this.onToggleModal}
           >
             Sign up

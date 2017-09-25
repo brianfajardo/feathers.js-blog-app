@@ -1,11 +1,20 @@
-@featherGreen: rgb(49,217,160);
+@featherGreen: rgb(49, 217, 160);
 
 body,
 html {
-  margin-top: 30px;
+  padding-top: 35px;
+  background: linear-gradient(#fff, #fdfdfd, #f7f7f7);
+  position: relative;
 }
 
 .login-page {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .pageHeader {
+    margin-bottom: 30px;
+  }
   .header:first-child {
     color: @featherGreen;
     font-size: 60px;
@@ -21,5 +30,32 @@ html {
   }
   .buttons {
     text-align: center;
+  }
+}
+
+.dashboard-page {
+  .header:first-child {
+    color: @featherGreen;
+    font-size: 60px;
+  }
+}
+
+.postcreate-page {
+  .header:first-child {
+    color: @featherGreen;
+    font-size: 60px;
+  }
+  .buttons {
+    float: right;
+  }
+}
+
+.postreview-page {
+  .header:first-child {
+    color: @featherGreen;
+    font-size: 60px;
+  }
+  .buttons {
+    float: right;
   }
 }

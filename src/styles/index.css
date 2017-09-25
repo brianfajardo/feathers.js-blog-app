@@ -1,6 +1,17 @@
 body,
 html {
-  margin-top: 30px;
+  padding-top: 35px;
+  background: linear-gradient(#fff, #fdfdfd, #f7f7f7);
+  position: relative;
+}
+.login-page {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.login-page .pageHeader {
+  margin-bottom: 30px;
 }
 .login-page .header:first-child {
   color: #31d9a0;
@@ -14,4 +25,22 @@ html {
 }
 .registrationModal .buttons {
   text-align: center;
+}
+.dashboard-page .header:first-child {
+  color: #31d9a0;
+  font-size: 60px;
+}
+.postcreate-page .header:first-child {
+  color: #31d9a0;
+  font-size: 60px;
+}
+.postcreate-page .buttons {
+  float: right;
+}
+.postreview-page .header:first-child {
+  color: #31d9a0;
+  font-size: 60px;
+}
+.postreview-page .buttons {
+  float: right;
 }
