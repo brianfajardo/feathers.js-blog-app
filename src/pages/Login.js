@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
-
+import { validateLogin } from '../utils/reduxFormValidations'
 import { loginFields } from '../constants/inputFields'
-import { Form, Button } from 'semantic-ui-react'
+
+// Components
+import FormField from '../components/FormField'
 import PageHeader from '../components/PageHeader'
 import RegistrationModal from '../components/RegistrationModal'
+import { Form, Button, Icon, Divider } from 'semantic-ui-react'
 
 class Login extends Component {
   constructor(props) {
@@ -36,6 +39,7 @@ class Login extends Component {
   render() {
     const { showModal } = this.state
     const { handleSubmit } = this.props
+    console.log(this.props.form.meta)
 
     return (
       <div>
@@ -54,6 +58,11 @@ class Login extends Component {
               content="Welcome! Login to your account or register a new one with us to start blogging."
             />
           </div>
+          <div className="oauth-login">
+            <Icon name="facebook square" />
+            <Icon name="google plus square" />
+          </div>
+          <Divider horizontal>Or</Divider>
           <div>
             <Form onSubmit={handleSubmit(this.onLoginSubmit)}>
               {loginFields.map((field, i) => (
@@ -62,7 +71,8 @@ class Login extends Component {
                   <Field
                     name={field.name}
                     type={field.type}
-                    component={field.component}
+                    component={FormField}
+                    componentType={field.component}
                     placeholder={field.placeholder}
                   />
                 </div>
@@ -84,5 +94,7 @@ class Login extends Component {
 }
 
 export default reduxForm({
-  form: 'login'
+  form: 'login',
+  validate: validateLogin,
+  destroyOnUnmount: true
 })(Login)

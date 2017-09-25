@@ -17,11 +17,28 @@ html {
   color: #31d9a0;
   font-size: 60px;
 }
+.login-page .oauth-login {
+  text-align: center;
+  font-size: 45px;
+}
+.login-page .oauth-login i:first-child {
+  color: #3b5998;
+  cursor: pointer;
+}
+.login-page .oauth-login i:last-child {
+  color: #dd4b39;
+  cursor: pointer;
+}
 .login-page button {
   float: right;
 }
 .login-page form div {
   margin-bottom: 20px;
+}
+.errors {
+  color: red;
+  text-align: center;
+  margin-bottom: 0px;
 }
 .registrationModal form div {
   margin-bottom: 25px;
@@ -62,13 +79,47 @@ html {
   color: #31d9a0;
   font-size: 60px;
 }
+.postreview-page .content-container {
+  height: auto;
+}
+.postreview-page .content-container .content-details {
+  padding-right: 5px;
+  float: left;
+  width: 20%;
+}
+.postreview-page .content-container .content-details p:first-child {
+  font-size: 20px;
+}
+.postreview-page .content-container .content-body {
+  float: right;
+  width: 80%;
+  padding-left: 20px;
+  border-left: 1px solid #31d9a0;
+}
+.postreview-page .content-container .content-body p:first-child {
+  font-size: 40px;
+  margin-bottom: 0px;
+}
+.postreview-page .content-container .content-body p:nth-child(2) {
+  font-size: 18px;
+  font-style: italic;
+}
 .postreview-page .buttons {
+  margin-top: 50px;
+  clear: both;
   float: right;
 }
 .postview-page .header:first-child {
   color: #31d9a0;
   font-size: 60px;
 }
+.postview-page .header:nth-child(2) {
+  font-style: italic;
+  font-size: 25px;
+  margin-top: 0px;
+}
 .postview-page .buttons {
+  margin-top: 50px;
+  clear: both;
   float: right;
 }

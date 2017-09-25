@@ -17,14 +17,14 @@ export const loginFields = [
 
 export const registrationFields = [
   {
-    label: 'First and last name:',
-    name: 'fullName',
+    label: 'Username:',
+    name: 'username',
     type: 'text',
-    placeholder: 'name',
+    placeholder: 'username',
     component: 'input'
   },
   {
-    label: 'Your email:',
+    label: 'Email:',
     name: 'email',
     type: 'text',
     placeholder: 'email',
@@ -52,6 +52,13 @@ export const createPostFields = [
     name: 'title',
     type: 'text',
     placeholder: 'title',
+    component: 'input'
+  },
+  {
+    label: 'Subtitle/description',
+    name: 'subtitle',
+    type: 'text',
+    placeholder: 'subtitle',
     component: 'input'
   },
   {

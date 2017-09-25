@@ -1,20 +1,24 @@
 import React, { Component } from 'react'
-import { reduxForm, Field } from 'redux-form'
-
+import store from '../store'
+import { reduxForm, Field, reset } from 'redux-form'
 import { createPostFields } from '../constants/inputFields'
+import { validatePost } from '../utils/reduxFormValidations'
+
+// Components
 import { Link } from 'react-router-dom'
 import { Button, Divider, Form } from 'semantic-ui-react'
+import FormField from '../components/FormField'
 import PageHeader from '../components/PageHeader'
 
 class PostCreate extends Component {
   constructor(props) {
     super(props)
+    this.state = { showReview: false }
     this.onPostSubmit = this.onPostSubmit.bind(this)
   }
 
   onPostSubmit(post) {
-    // Connect to Feathers service, create post
-    console.log('Post:', post)
+    this.props.history.push('/review_post')
   }
 
   render() {
@@ -35,18 +39,20 @@ class PostCreate extends Component {
                 <Field
                   name={field.name}
                   type={field.type}
-                  component={field.component}
+                  component={FormField}
+                  componentType={field.component}
                   placeholder={field.placeholder}
                 />
               </div>
             ))}
             <div className="buttons">
-              <Link to="/dashboard">
+              <Link
+                to="/dashboard"
+                onClick={() => store.dispatch(reset('createPost'))}
+              >
                 <Button>Cancel</Button>
               </Link>
-              <Link to="/review_post">
-                <Button>Review</Button>
-              </Link>
+              <Button type="submit">Review</Button>
             </div>
           </Form>
         </div>
@@ -57,5 +63,6 @@ class PostCreate extends Component {
 
 export default reduxForm({
   form: 'createPost',
+  validate: validatePost,
   destroyOnUnmount: false
 })(PostCreate)

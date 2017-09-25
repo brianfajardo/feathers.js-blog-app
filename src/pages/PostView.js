@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+// Components
 import { Link, withRouter } from 'react-router-dom'
 import { Divider, Button } from 'semantic-ui-react'
 import PageHeader from '../components/PageHeader'

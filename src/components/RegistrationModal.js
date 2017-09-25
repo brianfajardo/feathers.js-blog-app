@@ -1,6 +1,9 @@
 import React from 'react'
 import { reduxForm, Field } from 'redux-form'
 
+// Components
+import FormField from '../components/FormField'
+import { validateRegistration } from '../utils/reduxFormValidations'
 import { registrationFields } from '../constants/inputFields'
 import { Modal, Button, Icon, Form } from 'semantic-ui-react'
 
@@ -23,7 +26,8 @@ const RegistrationModal = ({
             <Field
               name={field.name}
               type={field.type}
-              component={field.component}
+              component={FormField}
+              componentType={field.component}
               placeholder={field.placeholder}
             />
           </div>
@@ -43,5 +47,6 @@ const RegistrationModal = ({
 
 export default reduxForm({
   form: 'newUser',
-  destroyOnUnmount: true
+  validate: validateRegistration,
+  forceUnregisterOnUnmount: true
 })(RegistrationModal)
