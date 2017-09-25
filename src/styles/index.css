@@ -30,6 +30,13 @@ html {
   color: #31d9a0;
   font-size: 60px;
 }
+.dashboard-page .cards {
+  margin-top: 30px;
+  cursor: pointer;
+}
+.dashboard-page .cards .time {
+  text-align: right;
+}
 .postcreate-page .header:first-child {
   color: #31d9a0;
   font-size: 60px;
@@ -42,5 +49,12 @@ html {
   font-size: 60px;
 }
 .postreview-page .buttons {
+  float: right;
+}
+.postview-page .header:first-child {
+  color: #31d9a0;
+  font-size: 60px;
+}
+.postview-page .buttons {
   float: right;
 }
