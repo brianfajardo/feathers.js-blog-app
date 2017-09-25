@@ -1,33 +1,47 @@
 import React from 'react'
+import { reduxForm, Field } from 'redux-form'
 
-import { Modal, Header, Button, Icon, Form } from 'semantic-ui-react'
+import { registrationFields } from '../constants/inputFields'
+import { Modal, Button, Icon, Form } from 'semantic-ui-react'
 
-const RegistrationModal = ({ showModal, onToggleModal }) => (
+const RegistrationModal = ({
+  showModal,
+  onToggleModal,
+  handleSubmit,
+  onRegistrationSubmit
+}) => (
   <Modal open={showModal} basic size="small" className="registrationModal">
-    <Header icon="user circle outline" content="Sign up" size="huge" />
+    <p>
+      <Icon name="user circle outline" />
+      Sign up
+    </p>
     <Modal.Content className="content">
-      <Form>
-        <Form.Field>
-          <label>Enter your email:</label>
-          <input type="text" name="email" placeholder="Email" />
-        </Form.Field>
-        <Form.Field>
-          <label>Select a password:</label>
-          <input type="password" name="password" placeholder="Password" />
-        </Form.Field>
-        <Modal.Actions>
-          <div className="buttons">
-            <Button basic color="red" inverted onClick={onToggleModal}>
-              <Icon name="remove" /> Cancel
-            </Button>
-            <Button basic color="green" inverted type="submit">
-              <Icon name="checkmark" /> Submit
-            </Button>
+      <Form onSubmit={handleSubmit(onRegistrationSubmit)}>
+        {registrationFields.map((field, i) => (
+          <div key={i}>
+            <label>{field.label}</label>
+            <Field
+              name={field.name}
+              type={field.type}
+              component={field.component}
+              placeholder={field.placeholder}
+            />
           </div>
-        </Modal.Actions>
+        ))}
+        <div className="buttons">
+          <Button basic color="red" inverted onClick={onToggleModal}>
+            <Icon name="remove" /> Cancel
+          </Button>
+          <Button basic color="green" inverted type="submit">
+            <Icon name="checkmark" /> Submit
+          </Button>
+        </div>
       </Form>
     </Modal.Content>
   </Modal>
 )
 
-export default RegistrationModal
+export default reduxForm({
+  form: 'newUser',
+  destroyOnUnmount: true
+})(RegistrationModal)

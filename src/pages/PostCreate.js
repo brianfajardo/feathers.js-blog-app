@@ -1,10 +1,22 @@
 import React, { Component } from 'react'
+import { reduxForm, Field } from 'redux-form'
 
+import { createPostFields } from '../constants/inputFields'
 import { Link } from 'react-router-dom'
-import { Button, Divider, Form, TextArea } from 'semantic-ui-react'
+import { Button, Divider, Form } from 'semantic-ui-react'
 import PageHeader from '../components/PageHeader'
 
 class PostCreate extends Component {
+  constructor(props) {
+    super(props)
+    this.onPostSubmit = this.onPostSubmit.bind(this)
+  }
+
+  onPostSubmit(post) {
+    // Connect to Feathers service, create post
+    console.log('Post:', post)
+  }
+
   render() {
     return (
       <div className="postcreate-page">
@@ -16,19 +28,18 @@ class PostCreate extends Component {
           <Divider />
         </div>
         <div>
-          <Form>
-            <Form.Field>
-              <label>Give it a creative title</label>
-              <input type="text" placeholder="title" />
-            </Form.Field>
-            <Form.Field>
-              <label>Enter some keywords</label>
-              <input type="text" placeholder="keywords" />
-            </Form.Field>
-            <Form.Field>
-              <label>Write</label>
-              <TextArea placeholder="Once upon a time..." rows={15} />
-            </Form.Field>
+          <Form onSubmit={this.props.handleSubmit(this.onPostSubmit)}>
+            {createPostFields.map((field, i) => (
+              <div key={i}>
+                <label>{field.label}</label>
+                <Field
+                  name={field.name}
+                  type={field.type}
+                  component={field.component}
+                  placeholder={field.placeholder}
+                />
+              </div>
+            ))}
             <div className="buttons">
               <Link to="/dashboard">
                 <Button>Cancel</Button>
@@ -44,4 +55,7 @@ class PostCreate extends Component {
   }
 }
 
-export default PostCreate
+export default reduxForm({
+  form: 'createPost',
+  destroyOnUnmount: false
+})(PostCreate)

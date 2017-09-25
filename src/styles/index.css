@@ -20,11 +20,22 @@ html {
 .login-page button {
   float: right;
 }
+.login-page form div {
+  margin-bottom: 20px;
+}
+.registrationModal form div {
+  margin-bottom: 25px;
+}
 .registrationModal label {
   color: white !important;
 }
 .registrationModal .buttons {
   text-align: center;
+}
+.registrationModal p {
+  text-align: center;
+  font-size: 45px;
+  margin-bottom: 0px;
 }
 .dashboard-page .header:first-child {
   color: #31d9a0;
@@ -43,6 +54,9 @@ html {
 }
 .postcreate-page .buttons {
   float: right;
+}
+.postcreate-page form div {
+  margin-bottom: 25px;
 }
 .postreview-page .header:first-child {
   color: #31d9a0;

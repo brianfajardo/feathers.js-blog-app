@@ -1,4 +1,4 @@
-import { FETCH_POSTS, VIEW_SINGLE_POST } from '../actions/'
+import { FETCH_POSTS, VIEW_SINGLE_POST } from '../constants/actionTypes'
 
 const initialState = {
   posts: [],

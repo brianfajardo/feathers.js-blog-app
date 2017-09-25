@@ -14,8 +14,8 @@ const Router = () => (
       <Route exact path="/" component={Login} />
       <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/create_post" component={PostCreate} />
-      <Route exact path="/review_post" component={PostReview} />
       <Route exact path="/view_post" component={PostView} />
+      <Route exact path="/review_post" component={PostReview} />
     </Container>
   </BrowserRouter>
 )

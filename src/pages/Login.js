@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { reduxForm, Field } from 'redux-form'
 
-import { Link } from 'react-router-dom'
+import { loginFields } from '../constants/inputFields'
 import { Form, Button } from 'semantic-ui-react'
 import PageHeader from '../components/PageHeader'
 import RegistrationModal from '../components/RegistrationModal'
@@ -11,28 +12,41 @@ class Login extends Component {
 
     this.state = { showModal: false }
 
-    this.onFormSubmit = this.onFormSubmit.bind(this)
+    this.onLoginSubmit = this.onLoginSubmit.bind(this)
     this.onToggleModal = this.onToggleModal.bind(this)
+    this.onRegistrationSubmit = this.onRegistrationSubmit.bind(this)
   }
 
   onToggleModal() {
     this.setState({ showModal: !this.state.showModal })
   }
 
-  onFormSubmit(info) {
-    console.log(info)
+  onLoginSubmit(loginCredentials) {
+    // Connect to Feather service and auth
+    // Push to dashboard
+    console.log('login credentials:', loginCredentials)
+  }
+
+  onRegistrationSubmit(registrationCredentials) {
+    // Connect to Feather service, auth
+    // Push to dashboard
+    console.log('registration credentials:', registrationCredentials)
   }
 
   render() {
     const { showModal } = this.state
+    const { handleSubmit } = this.props
 
     return (
       <div>
-        <RegistrationModal
-          showModal={showModal}
-          onFormSubmit={this.onFormSubmit}
-          onToggleModal={this.onToggleModal}
-        />
+        {showModal && (
+          <RegistrationModal
+            showModal={showModal}
+            onFormSubmit={this.onFormSubmit}
+            onToggleModal={this.onToggleModal}
+            onRegistrationSubmit={this.onRegistrationSubmit}
+          />
+        )}
         <div className="login-page">
           <div className="pageHeader">
             <PageHeader
@@ -41,18 +55,19 @@ class Login extends Component {
             />
           </div>
           <div>
-            <Form>
-              <Form.Field>
-                <label>Email</label>
-                <input type="text" name="email" placeholder="Email" />
-              </Form.Field>
-              <Form.Field>
-                <label>Password</label>
-                <input type="password" name="password" placeholder="Password" />
-              </Form.Field>
-              <Link to="/dashboard">
-                <Button>Login</Button>
-              </Link>
+            <Form onSubmit={handleSubmit(this.onLoginSubmit)}>
+              {loginFields.map((field, i) => (
+                <div key={i}>
+                  <label>{field.label}</label>
+                  <Field
+                    name={field.name}
+                    type={field.type}
+                    component={field.component}
+                    placeholder={field.placeholder}
+                  />
+                </div>
+              ))}
+              <Button type="submit">Login</Button>
             </Form>
           </div>
           <Button
@@ -68,4 +83,6 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default reduxForm({
+  form: 'login'
+})(Login)

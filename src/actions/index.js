@@ -1,8 +1,5 @@
 import fakePosts from './seed'
-
-// Action Types
-export const FETCH_POSTS = 'pepperoni pizza'
-export const VIEW_SINGLE_POST = 'canadian pizza'
+import { FETCH_POSTS, VIEW_SINGLE_POST } from '../constants/actionTypes'
 
 export const fetchPosts = () => dispatch => {
   // axios request
