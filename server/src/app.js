@@ -10,6 +10,7 @@ const hooks = require('feathers-hooks');
 const rest = require('feathers-rest');
 const socketio = require('feathers-socketio');
 
+const mongoDb = require('./database');
 const middleware = require('./middleware');
 const services = require('./services'); // Client adapter, similar to a router/controller
 
@@ -23,6 +24,7 @@ app
   .use(compress())
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
+  .configure(mongoDb)
   .configure(hooks())
   .configure(rest())
   .configure(socketio())
