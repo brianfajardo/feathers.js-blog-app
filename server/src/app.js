@@ -18,7 +18,7 @@ const app = feathers();
 
 app
   .configure(configuration())
-  .use(feathers.static(path.resolve(__dirname, '../../build')))
+  // .use(feathers.static(path.resolve(__dirname, '../../build')))
   .use(cors())
   .use(helmet())
   .use(compress())

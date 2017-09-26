@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { validateLogin } from '../utils/reduxFormValidations'
 import { loginFields } from '../constants/inputFields'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
 
 // Components
 import FormField from '../components/FormField'
@@ -25,9 +27,7 @@ class Login extends Component {
   }
 
   onLoginSubmit(loginCredentials) {
-    // Connect to Feather service and auth
-    // Push to dashboard
-    console.log('login credentials:', loginCredentials)
+    this.props.userLogin(loginCredentials)
   }
 
   onRegistrationSubmit(registrationCredentials) {
@@ -93,8 +93,10 @@ class Login extends Component {
   }
 }
 
-export default reduxForm({
+const LoginWithReduxForm = reduxForm({
   form: 'login',
   validate: validateLogin,
   destroyOnUnmount: true
 })(Login)
+
+export default connect(null, actions)(LoginWithReduxForm)
