@@ -11,11 +11,7 @@ const rest = require('feathers-rest');
 const socketio = require('feathers-socketio');
 
 const middleware = require('./middleware');
-
-// Client adapter.
-// Similar to a router/controller which handles requests.
-// Do work in here!
-const services = require('./services');
+const services = require('./services'); // Client adapter, similar to a router/controller
 
 const app = feathers();
 
