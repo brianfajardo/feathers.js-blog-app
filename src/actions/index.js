@@ -1,6 +1,11 @@
 import fakePosts from './seed'
 import { client, userService } from './feathersClient'
-import { FETCH_POSTS, VIEW_SINGLE_POST } from '../constants/actionTypes'
+import {
+  AUTH_USER,
+  AUTH_ERROR,
+  FETCH_POSTS,
+  VIEW_SINGLE_POST
+} from '../constants/actionTypes'
 
 export const userLogin = ({ email, password }) => dispatch => {
   client
@@ -9,8 +14,11 @@ export const userLogin = ({ email, password }) => dispatch => {
       email,
       password
     })
-    .then(resp => console.log(resp))
-    .catch(err => console.log(err))
+    .then(({ accessToken }) => {
+      localStorage.setItem('accessToken', accessToken)
+      return dispatch({ type: AUTH_USER })
+    })
+    .catch(err => dispatch({ type: AUTH_ERROR, payload: err }))
 }
 
 export const fetchPosts = () => dispatch => {
