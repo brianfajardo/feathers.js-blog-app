@@ -98,8 +98,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
-  const { authenticated } = state.auth
-  return { authenticated }
+  const { authenticated, error } = state.auth
+  return { authenticated, error }
 }
 
 const LoginWithReduxForm = reduxForm({

@@ -7,9 +7,7 @@ import {
 const initialState = {
   authenticated: false,
   error: null,
-  _id: null,
-  username: null,
-  email: null
+  user: {}
 }
 
 const authReducer = (state = initialState, action) => {
@@ -18,7 +16,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         authenticated: true,
-        ...action.payload
+        user: action.payload
       }
     case AUTH_USER_LOGOUT:
       return {

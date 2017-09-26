@@ -15,30 +15,16 @@ export const userLogin = ({ email, password }) => dispatch => {
       email,
       password
     })
-    .then(({ accessToken }) => {
-      localStorage.setItem('auth: accessToken', accessToken)
-      return client.passport.verifyJWT(accessToken)
-    })
-    .then(payload => {
-      console.log('auth: JWT Payload', payload)
-      return client.service('/user').get(payload.userId)
-    })
-    .then(user => {
-      const { email, username, _id } = user
-      console.log('auth: user', user)
+    .then(({ user }) => {
+      // accessToken automatically stored in localStorage.
       client.set('user', user)
-      return dispatch({
-        type: AUTH_USER,
-        payload: { email, username, _id }
-      })
+      return dispatch({ type: AUTH_USER, payload: user })
     })
-    .catch(err => new Error('action creator: userLogin', err))
+    .catch(err => console.log('user login error', err))
 }
 
-export const userSignUp = (
-  { username, email, password },
-  history
-) => dispatch => {
+export const userSignUp = (registrationCredentials, history) => dispatch => {
+  const { username, email, password } = registrationCredentials
   userService
     .create({ username, email, password })
     .then(() => {
@@ -48,26 +34,12 @@ export const userSignUp = (
           email,
           password
         })
-        .then(({ accessToken }) => {
-          localStorage.setItem('auth: accessToken', accessToken)
-          return client.passport.verifyJWT(accessToken)
-        })
-        .then(payload => {
-          console.log('auth: JWT Payload', payload)
-          return client.service('/user').get(payload.userId)
-        })
-        .then(user => {
-          const { email, username, _id } = user
-          console.log('auth: user', user)
+        .then(({ user }) => {
           client.set('user', user)
-          return dispatch({
-            type: AUTH_USER,
-            payload: { email, username, _id }
-          })
+          return dispatch({ type: AUTH_USER, payload: user })
         })
-        .catch(err => new Error('action creator: userSignup', err))
     })
-    .catch(err => new Error('action creator: userSignup', err))
+    .catch(err => console.log('action creator: userSignup', err))
 }
 
 export const fetchPosts = () => dispatch => {
@@ -79,5 +51,6 @@ export const viewPostById = id => {
 }
 
 export const userLogout = () => {
+  client.logout()
   return { type: AUTH_USER_LOGOUT }
 }

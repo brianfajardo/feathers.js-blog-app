@@ -1,6 +1,5 @@
 import axios from 'axios'
 import feathers from 'feathers-client'
-import localStorage from 'localstorage-memory'
 
 const DEV_URL = 'http://localhost:3030'
 
@@ -8,7 +7,7 @@ const DEV_URL = 'http://localhost:3030'
 export const client = feathers()
   .configure(feathers.hooks())
   .configure(feathers.rest(DEV_URL).axios(axios))
-  .configure(feathers.authentication({ storage: localStorage }))
+  .configure(feathers.authentication({ storage: window.localStorage }))
 
 export const userService = client.service('/user')
 export const postService = client.service('/post')

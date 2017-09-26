@@ -13,7 +13,16 @@ module.exports = function() {
   // Hooks
   app.service('authentication').hooks({
     before: {
-      create: [auth.hooks.authenticate(['jwt', 'local'])]
+      all: [auth.hooks.authenticate(['jwt', 'local'])]
+    },
+    after: {
+      create: [
+        hook => {
+          hook.result.user = hook.params.user;
+          delete hook.result.user.password;
+          delete hook.result.user.posts;
+        }
+      ]
     }
   });
 };

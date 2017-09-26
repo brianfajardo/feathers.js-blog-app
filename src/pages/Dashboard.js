@@ -68,6 +68,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state.auth)
   return { posts: state.blog.posts }
 }
 
