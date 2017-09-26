@@ -2,7 +2,10 @@ import { AUTH_USER, AUTH_ERROR } from '../constants/actionTypes'
 
 const initialState = {
   authenticated: false,
-  error: ''
+  error: null,
+  _id: null,
+  username: null,
+  email: null
 }
 
 const authReducer = (state = initialState, action) => {
@@ -10,7 +13,8 @@ const authReducer = (state = initialState, action) => {
     case AUTH_USER:
       return {
         ...state,
-        authenticated: true
+        authenticated: true,
+        ...action.payload
       }
     case AUTH_ERROR:
       return {

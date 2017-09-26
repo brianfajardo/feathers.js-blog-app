@@ -11,3 +11,4 @@ export const client = feathers()
   .configure(feathers.authentication({ storage: localStorage }))
 
 export const userService = client.service('/user')
+export const postService = client.service('/post')

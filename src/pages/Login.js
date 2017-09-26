@@ -3,6 +3,7 @@ import { reduxForm, Field } from 'redux-form'
 import { validateLogin } from '../utils/reduxFormValidations'
 import { loginFields } from '../constants/inputFields'
 import { connect } from 'react-redux'
+import { Redirect, withRouter } from 'react-router-dom'
 import * as actions from '../actions'
 
 // Components
@@ -28,6 +29,7 @@ class Login extends Component {
 
   onLoginSubmit(loginCredentials) {
     this.props.userLogin(loginCredentials)
+    // this.props.history.push('/dashboard')
   }
 
   onRegistrationSubmit(registrationCredentials) {
@@ -38,59 +40,70 @@ class Login extends Component {
 
   render() {
     const { showModal } = this.state
-    const { handleSubmit } = this.props
-    console.log(this.props.form.meta)
+    const { handleSubmit, authenticated } = this.props
+    console.log('auth', this.props.authenticated)
 
     return (
       <div>
-        {showModal && (
-          <RegistrationModal
-            showModal={showModal}
-            onFormSubmit={this.onFormSubmit}
-            onToggleModal={this.onToggleModal}
-            onRegistrationSubmit={this.onRegistrationSubmit}
-          />
-        )}
-        <div className="login-page">
-          <div className="pageHeader">
-            <PageHeader
-              title="FeatherJS Blog"
-              content="Welcome! Login to your account or register a new one with us to start blogging."
-            />
-          </div>
-          <div className="oauth-login">
-            <Icon name="facebook square" />
-            <Icon name="google plus square" />
-          </div>
-          <Divider horizontal>Or</Divider>
+        {authenticated ? (
+          <Redirect to="/dashboard" />
+        ) : (
           <div>
-            <Form onSubmit={handleSubmit(this.onLoginSubmit)}>
-              {loginFields.map((field, i) => (
-                <div key={i}>
-                  <label>{field.label}</label>
-                  <Field
-                    name={field.name}
-                    type={field.type}
-                    component={FormField}
-                    componentType={field.component}
-                    placeholder={field.placeholder}
-                  />
-                </div>
-              ))}
-              <Button type="submit">Login</Button>
-            </Form>
+            {showModal && (
+              <RegistrationModal
+                showModal={showModal}
+                onFormSubmit={this.onFormSubmit}
+                onToggleModal={this.onToggleModal}
+                onRegistrationSubmit={this.onRegistrationSubmit}
+              />
+            )}
+            <div className="login-page">
+              <div className="pageHeader">
+                <PageHeader
+                  title="FeatherJS Blog"
+                  content="Welcome! Login to your account or register a new one with us to start blogging."
+                />
+              </div>
+              <div className="oauth-login">
+                <Icon name="facebook square" />
+                <Icon name="google plus square" />
+              </div>
+              <Divider horizontal>Or</Divider>
+              <div>
+                <Form onSubmit={handleSubmit(this.onLoginSubmit)}>
+                  {loginFields.map((field, i) => (
+                    <div key={i}>
+                      <label>{field.label}</label>
+                      <Field
+                        name={field.name}
+                        type={field.type}
+                        component={FormField}
+                        componentType={field.component}
+                        placeholder={field.placeholder}
+                      />
+                    </div>
+                  ))}
+                  <Button type="submit">Login</Button>
+                </Form>
+              </div>
+              <Button
+                type="button"
+                className="ui button"
+                onClick={this.onToggleModal}
+              >
+                Sign up
+              </Button>
+            </div>
           </div>
-          <Button
-            type="button"
-            className="ui button"
-            onClick={this.onToggleModal}
-          >
-            Sign up
-          </Button>
-        </div>
+        )}
       </div>
     )
   }
+}
+
+const mapStateToProps = state => {
+  const { authenticated } = state.auth
+  return { authenticated }
 }
 
 const LoginWithReduxForm = reduxForm({
@@ -99,4 +112,4 @@ const LoginWithReduxForm = reduxForm({
   destroyOnUnmount: true
 })(Login)
 
-export default connect(null, actions)(LoginWithReduxForm)
+export default connect(mapStateToProps, actions)(withRouter(LoginWithReduxForm))

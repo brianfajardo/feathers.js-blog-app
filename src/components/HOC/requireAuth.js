@@ -5,8 +5,10 @@ import { Redirect } from 'react-router-dom'
 export default ComposedComponent => {
   class Authentication extends Component {
     render() {
-      return (
-        this.props.authenticated ? <ComposedComponent {...this.props}/> : <Redirect to="/"/>
+      return this.props.authenticated ? (
+        <ComposedComponent {...this.props} />
+      ) : (
+        <Redirect to="/" />
       )
     }
   }
@@ -19,5 +21,5 @@ export default ComposedComponent => {
     return { authenticated }
   }
 
-  export default connect(mapStateToProps)(Authentication)
+  return connect(mapStateToProps)(Authentication)
 }
