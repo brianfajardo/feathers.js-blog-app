@@ -1,4 +1,8 @@
-import { AUTH_USER, AUTH_ERROR } from '../constants/actionTypes'
+import {
+  AUTH_USER,
+  AUTH_ERROR,
+  AUTH_USER_LOGOUT
+} from '../constants/actionTypes'
 
 const initialState = {
   authenticated: false,
@@ -15,6 +19,11 @@ const authReducer = (state = initialState, action) => {
         ...state,
         authenticated: true,
         ...action.payload
+      }
+    case AUTH_USER_LOGOUT:
+      return {
+        ...state,
+        ...initialState
       }
     case AUTH_ERROR:
       return {

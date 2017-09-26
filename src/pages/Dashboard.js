@@ -12,6 +12,7 @@ class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.onPostClick = this.onPostClick.bind(this)
+    this.onLogoutClick = this.onLogoutClick.bind(this)
   }
 
   componentDidMount() {
@@ -21,6 +22,10 @@ class Dashboard extends Component {
   onPostClick(id) {
     this.props.viewPostById(id)
     this.props.history.push('/view_post')
+  }
+
+  onLogoutClick() {
+    this.props.userLogout()
   }
 
   render() {
@@ -33,9 +38,9 @@ class Dashboard extends Component {
             title="Dashboard"
             content="Create a new blog post by clicking the button on the right! Or click on a post to view."
           >
-            <Link to="/">
-              <Button floated="right">Logout</Button>
-            </Link>
+            <Button floated="right" onClick={this.onLogoutClick}>
+              Logout
+            </Button>
             <Link to="/create_post">
               <Button floated="right">Create</Button>
             </Link>

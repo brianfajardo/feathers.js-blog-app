@@ -29,19 +29,15 @@ class Login extends Component {
 
   onLoginSubmit(loginCredentials) {
     this.props.userLogin(loginCredentials)
-    // this.props.history.push('/dashboard')
   }
 
   onRegistrationSubmit(registrationCredentials) {
-    // Connect to Feather service, auth
-    // Push to dashboard
-    console.log('registration credentials:', registrationCredentials)
+    this.props.userSignUp(registrationCredentials, this.props.history)
   }
 
   render() {
     const { showModal } = this.state
     const { handleSubmit, authenticated } = this.props
-    console.log('auth', this.props.authenticated)
 
     return (
       <div>
