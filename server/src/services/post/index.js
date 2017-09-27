@@ -16,7 +16,7 @@ module.exports = function() {
     before: {
       create: [
         hook => {
-          console.log(hook);
+          //
         }
       ]
     }

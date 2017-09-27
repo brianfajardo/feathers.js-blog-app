@@ -35,8 +35,7 @@
     "semantic-ui-react": "^0.74.1"
   },
   "scripts": {
-    "start": "node ./server/src/index.js",
-    "start-client": "npm run build-css && run-p -ncr watch-css start-js",
+    "start": "npm run build-css && run-p -ncr watch-css start-js",
     "start-js": "react-scripts start",
     "build": "run-s -n build-css build-js",
     "build-js": "react-scripts build",

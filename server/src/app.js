@@ -2,7 +2,7 @@ const compress = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-const path = require('path');
+// const path = require('path');
 
 const feathers = require('feathers');
 const configuration = require('feathers-configuration');
@@ -24,7 +24,7 @@ app
   .use(compress())
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
-  .use(feathers.static(path.resolve(__dirname, '../../build')))
+  // .use(feathers.static(path.resolve(__dirname, '../../build'))) production
   .configure(mongoDb)
   .configure(hooks())
   .configure(rest())
