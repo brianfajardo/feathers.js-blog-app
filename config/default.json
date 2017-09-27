@@ -1,0 +1,10 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "mongodb": "mongodb://localhost:27017/feathers",
+  "auth": {
+    "service": "/user",
+    "secret": "avocado are green and bananas are yellow."
+  }
+}
