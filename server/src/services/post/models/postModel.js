@@ -3,6 +3,10 @@ const moment = require('moment');
 const { Schema } = mongoose;
 
 const postSchema = new Schema({
+  userId: {
+    type: String,
+    required: true
+  },
   title: {
     type: String,
     required: true
@@ -21,7 +25,7 @@ const postSchema = new Schema({
   },
   createdAt: {
     type: String,
-    default: moment().format('MMM Do YYYY')
+    default: moment().format('MMM Do YYYY, h:mm a')
   }
 });
 

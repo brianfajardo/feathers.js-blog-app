@@ -16,12 +16,6 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  posts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'post'
-    }
-  ],
   joinedAt: {
     type: String,
     default: moment().format('MMM Do YYYY')

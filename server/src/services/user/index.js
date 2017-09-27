@@ -16,6 +16,7 @@ module.exports = function() {
   app.use('/user', service(options));
 
   // Register hooks on service
+  // Hash password before creating user.
   app.service('/user').hooks({
     before: {
       create: [local.hooks.hashPassword({ passwordField: 'password' })]

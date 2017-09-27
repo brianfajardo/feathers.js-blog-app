@@ -23,32 +23,53 @@ export const userLogin = ({ email, password }) => dispatch => {
     .catch(err => console.log('user login error', err))
 }
 
-export const userSignUp = (registrationCredentials, history) => dispatch => {
-  const { username, email, password } = registrationCredentials
-  userService
-    .create({ username, email, password })
-    .then(() => {
-      client
-        .authenticate({
-          strategy: 'local',
-          email,
-          password
-        })
-        .then(({ user }) => {
-          client.set('user', user)
-          return dispatch({ type: AUTH_USER, payload: user })
-        })
-    })
-    .catch(err => console.log('action creator: userSignup', err))
+export const userSignUp = (
+  { username, email, password },
+  history
+) => dispatch => {
+  userService.create({ username, email, password }).then(() => {
+    client
+      .authenticate({
+        strategy: 'local',
+        email,
+        password
+      })
+      .then(({ user }) => {
+        client.set('user', user)
+        return dispatch({ type: AUTH_USER, payload: user })
+      })
+      .catch(err => console.log('action creator: userSignup', err))
+  })
 }
 
 export const fetchPosts = () => dispatch => {
-  return dispatch({ type: FETCH_POSTS, payload: [] })
+  const jwt = localStorage.getItem('feathers-jwt')
+  client.passport.verifyJWT(jwt).then(({ userId }) => {
+    postService
+      .find({ query: { userId } })
+      .then(posts => dispatch({ type: FETCH_POSTS, payload: posts }))
+      .catch(err => console.log('action creator: fetchPosts', err))
+  })
 }
 
 export const viewPostById = id => {
   return { type: VIEW_SINGLE_POST, payload: id }
 }
+
+export const createPost = post => dispatch => {
+  const { title, subtitle, content, keywords } = post
+  const jwt = localStorage.getItem('feathers-jwt')
+  // Splits string by spaces and/or commas
+  const keywordsToArray = keywords.split(/[ ,]+/)
+
+  return client.passport.verifyJWT(jwt).then(({ userId }) => {
+    postService
+      .create({ userId, title, subtitle, content, keywords: keywordsToArray })
+      .catch(err => console.log('action creator: createPost', err))
+  })
+}
+
+// export const deletePost = id => {}
 
 export const userLogout = () => {
   client.logout()

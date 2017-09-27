@@ -11,4 +11,14 @@ module.exports = function() {
   };
 
   app.use('/post', service(options));
+
+  app.service('/post').hooks({
+    before: {
+      create: [
+        hook => {
+          console.log(hook);
+        }
+      ]
+    }
+  });
 };
