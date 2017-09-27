@@ -2,7 +2,6 @@
 import { client, userService, postService } from './feathersClient'
 import {
   AUTH_USER,
-  AUTH_ERROR,
   AUTH_USER_LOGOUT,
   FETCH_POSTS,
   VIEW_SINGLE_POST
@@ -69,7 +68,13 @@ export const createPost = post => dispatch => {
   })
 }
 
-// export const deletePost = id => {}
+export const deletePost = (id, history) => dispatch => {
+  console.log('delete post id', id)
+  postService
+    .remove(id)
+    .then(() => history.push('/dashboard'))
+    .catch(err => console.log('action creator: deletePost', err))
+}
 
 export const userLogout = () => {
   client.logout()

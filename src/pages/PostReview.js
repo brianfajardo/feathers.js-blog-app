@@ -33,7 +33,7 @@ class PostReview extends Component {
           <Divider />
           <div className="content-container">
             <div className="content-details">
-              <p>Auth username</p>
+              <p>Keywords:</p>
               <p>{values.keywords}</p>
             </div>
             <div className="content-body">

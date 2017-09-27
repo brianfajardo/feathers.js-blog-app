@@ -29,14 +29,12 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log('Dashboard posts:', this.props.posts)
-
     return (
       <div className="dashboard-page">
         <div>
           <PageHeader
             title="Dashboard"
-            content="Create a new blog post by clicking the button on the right! Or click on a post to view."
+            content="Express yourself! Create a new post by clicking the button on the right."
           >
             <Button floated="right" onClick={this.onLogoutClick}>
               Logout
@@ -51,7 +49,7 @@ class Dashboard extends Component {
           {this.props.posts.length !== 0 &&
             this.props.posts.map((post, index) => (
               <div key={index} className="cards">
-                <Card fluid onClick={() => this.onPostClick(post.id)}>
+                <Card fluid onClick={() => this.onPostClick(post._id)}>
                   <Card.Content header={post.title} />
                   <Card.Content description={post.subtitle} />
                   <Card.Content extra className="time">

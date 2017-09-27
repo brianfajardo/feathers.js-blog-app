@@ -18,12 +18,13 @@ const app = feathers();
 
 app
   .configure(configuration())
-  // .use(feathers.static(path.resolve(__dirname, '../../build'))) PRODUCTION!
+  .options('*', cors())
   .use(cors())
   .use(helmet())
   .use(compress())
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
+  .use(feathers.static(path.resolve(__dirname, '../../build')))
   .configure(mongoDb)
   .configure(hooks())
   .configure(rest())

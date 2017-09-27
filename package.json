@@ -2,6 +2,17 @@
   "name": "feathers-blog",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "/user": {
+      "target": "http://localhost:3030"
+    },
+    "/authentication": {
+      "target": "http://localhost:3030"
+    },
+    "/post": {
+      "target": "http://localhost:3030"
+    }
+  },
   "dependencies": {
     "axios": "^0.16.2",
     "feathers-client": "^2.4.0",
@@ -20,7 +31,8 @@
     "semantic-ui-react": "^0.74.1"
   },
   "scripts": {
-    "start": "npm run build-css && run-p -ncr watch-css start-js",
+    "start": "node ./server/index.js",
+    "start-client": "npm run build-css && run-p -ncr watch-css start-js",
     "start-js": "react-scripts start",
     "build": "run-s -n build-css build-js",
     "build-js": "react-scripts build",

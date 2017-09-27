@@ -88,7 +88,8 @@ html {
   width: 20%;
 }
 .postreview-page .content-container .content-details p:first-child {
-  font-size: 20px;
+  font-size: 16px;
+  margin-bottom: 2px;
 }
 .postreview-page .content-container .content-body {
   float: right;
