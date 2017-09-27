@@ -4,9 +4,7 @@
   "version": "0.0.0",
   "homepage": "",
   "main": "src",
-  "keywords": [
-    "feathers"
-  ],
+  "keywords": ["feathers"],
   "author": {
     "name": "Brian Fajardo",
     "email": "bmf5@hotmail.com"
@@ -24,7 +22,7 @@
   "scripts": {
     "test": "npm run eslint && npm run mocha",
     "eslint": "eslint src/. test/. --config .eslintrc.json",
-    "start": "nodemon src/",
+    "start": "node src/",
     "mocha": "mocha test/ --recursive"
   },
   "dependencies": {
