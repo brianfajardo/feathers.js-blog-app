@@ -25,7 +25,6 @@ app
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
   .use(feathers.static('build'))
-  .use('*', res => res.sendFile(path.resolve('build/index.html')))
   .configure(mongoDb)
   .configure(hooks())
   .configure(rest())
