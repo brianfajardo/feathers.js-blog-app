@@ -1,0 +1,10 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "mongodb": "mongodb://admin:password@ds153494.mlab.com:53494/featherjs-blog",
+  "auth": {
+    "service": "/user",
+    "secret": "avocado are green and bananas are yellow."
+  }
+}
