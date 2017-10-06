@@ -1,5 +1,7 @@
 # FeathersJS Blog 🦆
 
+Heroku demo: https://featherjs-blog.herokuapp.com/
+
 Follow these instructions to run the app for yourself:
 
 1. Clone or download repository

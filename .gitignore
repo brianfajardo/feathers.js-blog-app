@@ -11,6 +11,8 @@ index.css.map
 /coverage
 
 # production
+/build
+config/
 
 # misc
 .DS_Store
