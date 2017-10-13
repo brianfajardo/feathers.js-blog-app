@@ -4,21 +4,15 @@ const User = require('./models/userModel');
 
 module.exports = function() {
   const app = this;
+  const options = { Model: User };
 
-  const options = {
-    Model: User,
-    lean: true, // Faster queries by returning plain objects instead of Mongoose models.
-    paginate: { default: 1, max: 1 }
-    // id, default is mongoose native `_id`
-  };
-
-  // Register service
+  // Register service.
   app.use('/user', service(options));
 
-  // Register hooks on service
-  // Hash password before creating user.
+  // Register hooks on service.
   app.service('/user').hooks({
     before: {
+      /* Hash password before saving a new user to the database. */
       create: [local.hooks.hashPassword({ passwordField: 'password' })]
     }
   });
