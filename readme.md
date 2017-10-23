@@ -1,20 +1,19 @@
 # FeathersJS Blog 🦆
 
-Heroku demo: https://featherjs-blog.herokuapp.com/
+## Heroku demo: https://featherjs-blog.herokuapp.com/
 
-Follow these instructions to run the app for yourself:
+Decided to try out FeathersJS, a Node web framework, and build an app with it. I haven't really ventured outside of Express yet, so this would be my first.
 
-1. Clone or download repository
-2. Extract contents
-3. `cd feathers-blog-master`
+### Here are some of my thoughts on FeathersJS based on initial impressions:
 
-4. Server:
-  * `cd server`
-  * `npm install`
-  * `npm start`
-5. Client:
-  * open another terminal window
-  * `cd ..` (root)
-  * `npm install`
-  * `npm start`
-6. Navigate to localhost:3000 in your browser.
+✅ Advantages:
+- Simple service set up and hooks integration
+- Does a lot of the heavy lifting, especially when it comes to authentication and passport strategies
+- When working with the feathers-mongoose module, I liked that clientside requests looked similar to database/mongoose calls, made it easier to develop from the front
+- Great documentation
+- Open sourced, so I found most solutions online from others
+
+❌ Disadvantages:
+- Some parts like routing might have been too abstracted. I can see this being a problem for newcomers to the framework.
+- Overwhelming amount of feathers-related modules (ie. client, server, and helper libraries). Hard to understand what you need.
+- Definitely is overlooked by more popular libraries like Express, Meteor, Sails, Koa.
